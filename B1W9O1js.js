@@ -1,68 +1,79 @@
+alert("Welkom bij Het Cafe het leukste cafe van nederland!");
+
 var totaalprijs = 0
-function rekening(prijsproduct, aantal, naam){
-document.write(naam +": aantal:" + aantal + " prijs:" + prijsproduct + " euro " + "<br>");
-var totaalprijs = totaalprijs + prijsproduct
+
+
+function bestelling(){ // stelt de vraag wat je wil bestellen
+	return prompt("Wat wilt u bestellen? fris, bier of wijn of een snack.");
+}
+function prijsproduct(aantal, prijs){ // rekent de prijs van het product uit
+	return aantal * prijs
+}
+function rekening(naam , aantal, priceproduct){ // schrijft het aantal producten de naam van het product en de prijs van her product
+	document.write(naam +": aantal:" + aantal + " prijs:" + priceproduct + " euro " + "<br>");
+}
+function eindprijs(totaalprijs, price){ // rekent de eindprijs uit
+	return totaalprijs + price
 }
 
 
-
-function bestelling(){
-	while(bestelling != "stop"){
-		var bestelling = prompt("Wat wilt u bestellen? fris, bier of wijn of een snack.");
-		if(bestelling == "fris"){
-			var aantal = prompt("Hoeveel fris wilt u?");
-			var prijsproduct = 2.25 * aantal
+	while(vraag != "stop"){
+		var vraag = bestelling();
+		if(vraag == "fris"){
+			var aantal = prompt("Hoeveel fris wilt u?")
 			var prijs = 2.25
-			var totaalprijs = totaalprijs + prijs
+			var price = prijsproduct(aantal, prijs);
 			var naam = "fris"
-			document.write(naam +": aantal:" + aantal + " prijs:" + prijsproduct + " euro " + "<br>");
+			rekening(naam, aantal, price);
+			var totaalprijs = eindprijs(totaalprijs, price);
 		}
-		else if(bestelling == "bier"){
-			var naam = "bier"
+		else if(vraag == "bier"){
 			var aantal = prompt("Hoeveel bier wilt u");
-			var prijsproduct = 2.25 * aantal
-			var totaalprijs = totaalprijs + prijs
 			var prijs = 2.25
-			document.write(naam +": aantal:" + aantal + " prijs:" + prijsproduct + " euro " + "<br>");
+			var price = prijsproduct(aantal, prijs);
+			var naam = "bier"
+			rekening(naam, aantal, price);
+			var totaalprijs = eindprijs(totaalprijs, price);
 		}
-		else if(bestelling == "wijn"){
-			var naam = "wijn"
+		else if(vraag == "wijn"){
+
 			var aantal = prompt("Hoeveel wijn wilt u");
-			var prijsproduct = 2.85 * aantal
-			var totaalprijs = totaalprijs + prijs
 			var prijs = 2.85
-			document.write(naam +": aantal:" + aantal + " prijs:" + prijsproduct + " euro " + "<br>");
+			var price = prijsproduct(aantal, prijs);
+			var naam = "wijn"
+			rekening(naam, aantal, price);
+			var totaalprijs = eindprijs(totaalprijs, price);
 		}
-		else if(bestelling == "stop"){
-			var bestelling = "stop"
+		else if(vraag == "stop"){
+			var vraag = "stop"
 		}
-		else if(bestelling == "snack"){
+		else if(vraag == "snack"){
 			var aantalbit = prompt("Hoeveel bitterballen wilt u toevoegen 8 of 16")
 			if(aantalbit == 8){
-				var naam = "8 bitterballen"
 				var aantal = prompt("Hoeveel schalen wilt u");
-				var prijsproduct = 2.4 * aantal
 				var prijs = 2.4
-				var totaalprijs = totaalprijs + prijs
-				document.write(naam +": aantal:" + aantal + " prijs:" + prijsproduct + " euro " + "<br>");
+				var price = prijsproduct(aantal, prijs);
+				var naam = "8 bitterballen"
+				rekening(naam, aantal, price);
+				var totaalprijs = eindprijs(totaalprijs, price);
 			}
 			else if(aantalbit == 16){
-				var naam = "16 bitterballen"
 				var aantal = prompt("Hoeveel schalen wilt u");
-				var prijsproduct = 4.1 * aantal
 				var prijs = 4.1
-				var totaalprijs = totaalprijs + prijs
-				document.write(naam +": aantal:" + aantal + " prijs:" + prijsproduct + " euro " + "<br>");
+				var price = prijsproduct(aantal, prijs);
+				var naam = "16 bitterballen"
+				rekening(naam, aantal, price);
+				var totaalprijs = eindprijs(totaalprijs, price);
 			}
 			else{
-		 	alert("Uw bestelling kan niet worden toegevoegd");
+		 	alert("De snacks zijn niet toegevoegd aan de bestelling");
 		 	}
 		}
 		else{
-			alert("Uw bestelling kan niet wordenj toegevoegd");
+			alert("Uw bestelling kan niet worden toegevoegd");
 		}	
 	}
-}
+
+document.write("Totaal: " + totaalprijs + " euro ")
 
 
-bestelling();
